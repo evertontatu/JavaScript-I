@@ -9,10 +9,10 @@ console.log(campos);
 var tbody = document.querySelector('table tbody'); //buscando tbody
 //adicionando um evento ao formulário quando for submetido
 document.querySelector('.form').addEventListener('submit', function(event){
-
+    
     event.preventDefault(); //impedindo que o navegador regarregue a pagina
 
-    //criando um elemnto tr
+    //criando um elemento tr com createElement
     var tr = document.createElement('tr');
 
     //varrendo o array campos
@@ -23,8 +23,8 @@ document.querySelector('.form').addEventListener('submit', function(event){
 
     });
 
-    var tdVolume = document.createElement('td');
-    tdVolume.textContent = campos[1].value * campos[2].value;
+    var tdVolume = document.createElement('td'); //criando td para valor total
+    tdVolume.textContent = campos[1].value * campos[2].value; //multiplicando os valores
     tr.appendChild(tdVolume);
 
     tbody.appendChild(tr);
