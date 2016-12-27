@@ -1,8 +1,8 @@
-class NegociacoesView {
+//extends herdando os metodos da classe View
+class NegociacoesView extends View{
 
     constructor(elemento) {
-
-        this._elemento = elemento;
+        super(elemento);
     }
 
     //percorrendo a lista de negociacoes, criando um novo array atualizando a cada iteracao...
@@ -41,7 +41,4 @@ class NegociacoesView {
         `;
     }
 
-    update(model) {
-        this._elemento.innerHTML = this._template(model);
-    }
 }
