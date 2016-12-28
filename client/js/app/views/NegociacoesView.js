@@ -6,7 +6,7 @@ class NegociacoesView extends View{
     }
 
     //percorrendo a lista de negociacoes, criando um novo array atualizando a cada iteracao...
-    _template(model) {
+    template(model) {
 
         return `
             <table class="table table-hover table-bordered">
