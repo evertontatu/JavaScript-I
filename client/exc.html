@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            div, form, input{
+                box-sizing: border-box;
+            }
+            form{
+                width: 300px;
+            }
+            .box-form{
+                display:flex;
+                align-items: center;
+                flex-direction: column;
+            }
+            div{
+                width: 100%;
+                margin:20px 0;
+            }
+            input{
+                width: 100%;
+                padding: 10px;
+            }
+            button[type="submit"]{
+                padding: 10px;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box-form">
+            <form onsubmit="clienteController.adiciona(event)">
+                <div>
+                    <label for="nome">Nome: </label>
+                    <input id="nome" type="text" placeholder="José">
+                </div>
+
+                <div>
+                    <label for="telefone">Sobrenome: </label>
+                    <input id="sobrenome" type="text" placeholder="Siqueira">
+                </div>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+
+
+        <script>
+            class Cliente {
+                constructor(nome, sobrenome){
+                    this._nome = nome;
+                    this._sobrenome = sobrenome;
+                    Object.freeze(this);
+                }
+
+                get nome(){
+                    return this._nome;
+                }
+
+                get sobrenome(){
+                    return this._sobrenome;
+                }
+            }
+
+            class ClienteController {
+                constructor() {
+                    let $ = document.querySelector.bind(document);
+
+                    this._inputNome      = $('#nome');
+                    this._inputSobrenome = $('#sobrenome');
+
+                    this._listaClientes  = new ListaCliente();
+                }
+
+                adiciona(event){
+                    event.preventDefault();
+
+                    this._listaClientes.adiciona(this._criaCliente());
+                }
+
+                _criaCliente() {
+                    return new Cliente(
+                        this._inputNome.value,
+                        this._inputSobrenome.value);
+                }
+            }
+
+            class ListaCliente {
+                constructor() {
+                    this._clientes = [];
+                }
+
+                adiciona(cliente){
+                    this._clientes.push(cliente);
+                }
+
+                get clientes(){
+                    return [].concat(this._clientes);
+                }
+            }
+
+
+            let clienteController = new ClienteController();
+
+
+
+        </script>
+    </body>
+</html>
