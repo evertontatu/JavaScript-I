@@ -64,6 +64,16 @@
                 }
             }
 
+            let cliente = new Proxy(new Cliente('José', 'Magalhães'),{
+                get(target, prop, receiver) {
+                    console.log('Armadilha aqui!');
+
+                    return Reflect.get(target, prop, receiver);
+                }
+            });
+
+            console.log(cliente.nome);
+
             class ClienteController {
                 constructor() {
                     let $ = document.querySelector.bind(document);
