@@ -19,7 +19,7 @@ class NegociacaoController {
     }
 
     adiciona(event) {
-        event.preventDefault(); //nao permite que o navegador atualize após o submit do form
+        event.preventDefault(); //nao permite que o navegador atualize após o submit do formu
         this._listaNegociacoes.adiciona(this._criaNegociacao());
         this._mensagem.texto = 'Negociação adicionada com sucesso!';
         this._limpaFormulario();
