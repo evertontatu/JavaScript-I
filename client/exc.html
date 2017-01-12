@@ -50,7 +50,7 @@
         <script>
             class Cliente {
                 constructor(nome, sobrenome){
-                    this._nome = nome;
+                    this._nome      = nome;
                     this._sobrenome = sobrenome;
                     Object.freeze(this);
                 }
@@ -106,6 +106,7 @@
                 }
             }
 
+
             class ListaCliente {
                 constructor() {
                     this._clientes = [];
@@ -122,7 +123,9 @@
 
             let clienteController = new ClienteController();
 
-            console.log(clienteController);
+            console.log(ListaCliente._clientes);
+
+
         </script>
     </body>
 </html>

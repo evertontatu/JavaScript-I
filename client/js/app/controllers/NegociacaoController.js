@@ -13,7 +13,7 @@ class NegociacaoController {
             'adiciona', 'esvazia');
 
         this._mensagem = new Bind(
-            new Mensagem(), new NegociacoesView($('#negociacoesView')),
+            new Mensagem(), new MensagemView($('#mensagemView')),
             'texto');
 
     }
