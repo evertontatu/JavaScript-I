@@ -1,68 +1,77 @@
 class NegociacaoService {
 
-    obterNegociacoesDaSemana(cb) {
-        let xhr = new XMLHttpRequest();
+    obterNegociacoesDaSemana() {
 
-        xhr.open('GET', 'negociacoes/semana');
+        return new Promise((resolve, reject) =>{
 
-        xhr.onreadystatechange = () => {
-            if(xhr.readyState == 4){
-                if(xhr.status == 200){
+            let xhr = new XMLHttpRequest();
 
-                    cb(null, JSON.parse(xhr.responseText)
-                        .map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)));
+            xhr.open('GET', 'negociacoes/semana');
 
-                } else {
-                    console.log("xhr.responseText");
-                    cb('Não foi possível obter as negociações', null);
+            xhr.onreadystatechange = () => {
+                if(xhr.readyState == 4){
+                    if(xhr.status == 200){
+
+                        resolve(JSON.parse(xhr.responseText)
+                            .map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)));
+
+                    } else {
+                        console.log("xhr.responseText");
+                        reject('Não foi possível obter as negociações da semana');
+                    }
                 }
-            }
-        };
-
-        xhr.send();
+            };
+            xhr.send();
+        });
     }
 
-    obterNegociacoesDaSemanaAnterior(cb) {
-        let xhr = new XMLHttpRequest();
+    obterNegociacoesDaSemanaAnterior() {
 
-        xhr.open('GET', 'negociacoes/anterior');
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
 
-        xhr.onreadystatechange = () => {
-            if(xhr.readyState == 4){
-                if(xhr.status == 200){
+            xhr.open('GET', 'negociacoes/anterior');
 
-                    cb(null, JSON.parse(xhr.responseText)
-                        .map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)));
+            xhr.onreadystatechange = () => {
+                if(xhr.readyState == 4){
+                    if(xhr.status == 200){
 
-                } else {
-                    console.log("xhr.responseText");
-                    cb('Não foi possível obter as negociações', null);
+                        resolve(JSON.parse(xhr.responseText)
+                            .map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)));
+
+                    } else {
+                        console.log("xhr.responseText");
+                        reject('Não foi possível obter as negociações da semana anterior');
+                    }
                 }
-            }
-        };
+            };
 
-        xhr.send();
+            xhr.send();
+        });
     }
 
     obterNegociacoesDaSemanaRetrasada(cb) {
-        let xhr = new XMLHttpRequest();
 
-        xhr.open('GET', 'negociacoes/retrasada');
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
 
-        xhr.onreadystatechange = () => {
-            if(xhr.readyState == 4){
-                if(xhr.status == 200){
+            xhr.open('GET', 'negociacoes/retrasada');
 
-                    cb(null, JSON.parse(xhr.responseText)
-                        .map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)));
+            xhr.onreadystatechange = () => {
+                if(xhr.readyState == 4){
+                    if(xhr.status == 200){
 
-                } else {
-                    console.log("xhr.responseText");
-                    cb('Não foi possível obter as negociações', null);
+                        resolve(JSON.parse(xhr.responseText)
+                            .map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)));
+
+                    } else {
+                        console.log("xhr.responseText");
+                        reject('Não foi possível obter as negociações da semana retrasada');
+                    }
                 }
-            }
-        };
+            };
 
-        xhr.send();
+            xhr.send();
+        });
     }
 }
