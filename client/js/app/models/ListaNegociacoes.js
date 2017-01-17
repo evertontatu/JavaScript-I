@@ -9,6 +9,10 @@ class ListaNegociacoes {
         this._negociacoes.push(negociacao);
     }
 
+    orderna(criterio){
+        this.negociacoes.sort(criterio);
+    }
+
     get negociacoes(){
         return [].concat(this._negociacoes);
     }
