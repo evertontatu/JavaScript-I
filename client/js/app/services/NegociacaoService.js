@@ -11,6 +11,7 @@ class NegociacaoService {
             this._http
                 .get('negociacoes/semana')
                 .then(negociacoes => {
+                    console.log(negociacoes);
                     resolve(negociacoes.map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)));
                 })
                 .catch(err => {

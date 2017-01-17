@@ -10,7 +10,7 @@ class ListaNegociacoes {
     }
 
     orderna(criterio){
-        this.negociacoes.sort(criterio);
+        this._negociacoes.sort(criterio);
     }
 
     get negociacoes(){
