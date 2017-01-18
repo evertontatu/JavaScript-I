@@ -10,7 +10,7 @@ class NegociacaoController {
         this._listaNegociacoes = new Bind(
             new ListaNegociacoes(),
             new NegociacoesView($('#negociacoesView')),
-            'adiciona', 'esvazia');
+            'adiciona', 'esvazia', 'ordena');
 
         this._mensagem = new Bind(
             new Mensagem(), new MensagemView($('#mensagemView')),
@@ -27,17 +27,17 @@ class NegociacaoController {
 
     importaNegociacoes() {
         let service = new NegociacaoService();
+        service
+            .obterNegociacoes()
+            .then(negociacoes => negociacoes.forEach(negociacao => {
+                this._listaNegociacoes.adiciona(negociacao);
+                this._mensagem.texto = 'Negociações do período importadas'
+            }))
+            .catch(err => this._mensagem.texto = err);
+    }
 
-        Promise.all([
-            service.obterNegociacoesDaSemana(), service.obterNegociacoesDaSemanaAnterior(), service.obterNegociacoesDaSemanaRetrasada()]
-        ).then(negociacoes => {
-            negociacoes
-            .reduce((arrayAchatado, array) => arrayAchatado.concat(array), [])
-            .forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
-            this._mensagem.texto = 'Negociações importadas com sucesso';
-            console.log(negociacoes);
-        })
-        .catch(err => this._mensagem.texto = err);
+    ordena(coluna) {
+        this._listaNegociacoes.ordena((a, b) => a[coluna] - b[coluna]);
     }
 
     apaga() {
@@ -56,7 +56,6 @@ class NegociacaoController {
         this._inputData.value = '';
         this._inputQuantidade.value = 1;
         this._inputValor.value = 0.0;
-
         this._inputData.focus();
     }
 }
