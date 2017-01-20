@@ -1,5 +1,7 @@
+import {View} from './View';
+
 //extends herdando os metodos da classe View
-class NegociacoesView extends View{
+export class NegociacoesView extends View{
 
     constructor(elemento) {
         super(elemento);
