@@ -1,4 +1,5 @@
 import {View} from './View';
+import {DateHelper} from '../helpers/DateHelper';
 
 //extends herdando os metodos da classe View
 export class NegociacoesView extends View{

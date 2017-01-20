@@ -3,5 +3,5 @@ import {} from './polyfill/fetch';
 
 let negociacaoController = new NegociacaoController();
 
-document.querySelector('.form').onsubmit = negociacaoController.adiciona.bind(negociacaoControler);
-document.querySelector('[type=button]').onsubmit = negociacaoController.apaga.bind(negociacaoControler);
+document.querySelector('.form').onsubmit = negociacaoController.adiciona.bind(negociacaoController);
+document.querySelector('[type=button]').onsubmit = negociacaoController.apaga.bind(negociacaoController);
