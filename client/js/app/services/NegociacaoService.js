@@ -116,4 +116,17 @@ class NegociacaoService {
                 throw new Error('Não foi possível apagar as negociações')
             })
     }
+
+    importa(listaAtual) {
+
+        return this.obterNegociacoes()
+            .then(negociacoes =>
+                negociacoes.filter(negociacao =>
+                    !listaAtual.some(negociacaoExistente => JSON.stringify(negociacao) == JSON.stringify(negociacaoExistente)))
+            )
+            .catch(err => {
+                console.log(err);
+                throw new Error('Não foi possível buscar negociações para importar');
+            })
+    }
 }
