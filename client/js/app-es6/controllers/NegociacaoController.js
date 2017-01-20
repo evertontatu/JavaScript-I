@@ -7,7 +7,7 @@ import {DateHelper} from '../helpers/DateHelper';
 import {Bind} from '../helpers/Bind';
 import {Negociacao} from '../models/Negociacao';
 
-export class NegociacaoController {
+class NegociacaoController {
 
     constructor() {
         let $ = document.querySelector.bind(document); //atribuindo ao $ a funcao de executar o querySelector ainda respondendo a document e nao ao contexto do $
@@ -104,4 +104,11 @@ export class NegociacaoController {
         this._inputValor.value = 0.0;
         this._inputData.focus();
     }
+}
+
+let negociacaoController = new NegociacaoController();
+
+export function currentInstance() {
+
+    return negociacaoController;
 }
